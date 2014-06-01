@@ -34,7 +34,7 @@ Template.repo.lang = function(){
     for (var key in lang){
       prec = Math.round(lang[key] * 100 / total);
       type = types[Math.floor(Math.random() * types.length)];
-      if prec > 0:
+      if(prec > 0)
         new_lang.push({'lang_name' : key, 'lang_prec' : prec, 'type' : type});
     }
     return new_lang;
