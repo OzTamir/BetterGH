@@ -1,0 +1,113 @@
+<head>
+  <title>Better GitHub Profiles</title>
+</head>
+
+<body>
+	<div class="container">
+  		{{> content}}
+  		{{> noName}}
+  	</div>
+</body>
+
+<template name="content">
+      <div class="header">
+      	{{> header}}
+      </div>
+      <br>
+
+      <div class="jumbotron">
+      	{{#if showUser}}
+      		{{> user}}
+      	{{else}}
+      		{{> hero}}
+      	{{/if}}
+      </div>
+
+      <div class="row repos">
+      	{{> repos}}
+      </div>
+</template>
+
+<template name="header">
+	<ul class="nav nav-pills pull-right">
+		<li class="active"><a href="#">Home</a></li>
+	</ul>
+	<h3 class="text-muted">Better GitHub</h3>
+</template>
+
+<template name="hero">
+	<h1 class="text-center">Better GitHub Profile</h1>
+	<p class="lead text-center">See your (better) GitHub Profile Page</p>
+
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Enter your GitHub user name here..." id="username">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" id="goBtn">Go!</button>
+      </span>
+    </div>
+</template>
+
+<template name="user">
+	<div class="row center-block">
+	  <div class="center-block">
+	    <div class="thumbnail">
+	      <img src="http://www.gravatar.com/avatar/{{user.gravatar_id}}.jpg" alt="{{user.login}}" class="center-block">
+	      <div class="caption">
+	        <h3 class="text-center">{{user.login}}</h3>
+	        <p class="text-center"><a href="{{user.html_url}}">GitHub</a></p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</template>
+
+<template name="repo">
+	<div class="media">
+		<a class="pull-left" href="#">
+			<i class="fa fa-github fa-4 media-object"></i>
+		</a>
+		<div class="media-body">
+			<h4 class="media-heading">{{name}}</h4>
+			<h5 class="media-heading"><a href="{{html_url}}">{{full_name}}</a></h5>
+			<p>{{description}}</p>
+		</div>
+		
+		<div class="progress">
+			{{#each lang}}
+			<div class="progress-bar progress-bar-{{type}}" style="width: {{lang_prec}}%">
+				<span>{{lang_name}}</span>
+			</div>
+			{{/each}}
+		</div>
+
+	</div>
+</template>
+
+<template name="repos">
+	<div class="col-lg-12">
+		{{#each repos}}
+			{{> repo}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="noName">
+  <div class="modal fade noName" tabindex="-1" role="dialog" aria-labelledby="noName" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Please enter a username</h4>
+        </div>
+        <div class="modal-body">
+          <p>Trust us - it's super cool.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+
